@@ -5,8 +5,15 @@ import { Button } from "../ui/button";
 import { Separator } from "../ui/separator";
 import { Plus } from "lucide-react";
 import { useParams, useRouter } from "next/navigation";
+import { Billboard } from "@prisma/client";
+import { BillboardColumn, columns } from "./columns";
+import { DataTable } from "../ui/data-table";
 
-export default function BillboardClient() {
+interface Props {
+  data: BillboardColumn[];
+}
+
+export default function BillboardClient({ data }: Props) {
   const router = useRouter();
   const params = useParams();
 
@@ -14,7 +21,7 @@ export default function BillboardClient() {
     <>
       <div className="flex items-center justify-between">
         <Heading
-          title={`Billboards (0)`}
+          title={`Billboards (${data.length})`}
           description="Manage billboards for your store"
         />
         <Button
@@ -23,7 +30,10 @@ export default function BillboardClient() {
           <Plus className="mr-2 h-4 w-4" /> Add New
         </Button>
       </div>
+
       <Separator />
+
+      <DataTable searchKey="label" columns={columns} data={data} />
     </>
   );
 }

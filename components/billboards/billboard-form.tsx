@@ -44,10 +44,12 @@ export const BillboardForm: React.FC<Props> = ({ initialData }) => {
   const router = useRouter();
 
   const title = initialData ? "Edit billboard" : "Create billboard";
-  const description = initialData ? "Edit a billboard." : "Add a new billboard";
+  const description = initialData
+    ? "Edit a billboard."
+    : "Add a new billboard successfully.";
   const toastMessage = initialData
-    ? "Billboard updated."
-    : "Billboard created.";
+    ? "Billboard updated successfully."
+    : "Billboard created successfully.";
   const action = initialData ? "Save changes" : "Create";
 
   const form = useForm<BillboardFormValues>({
